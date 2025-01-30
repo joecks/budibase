@@ -221,3 +221,16 @@ function getMissingAncestors(screen: Screen) {
   checkMissingAncestors(screen.props, [])
   return result
 }
+
+export const screenComponents = derived(
+  [selectedScreen],
+  ([$selectedScreen]) => {
+    if (!$selectedScreen) {
+      return []
+    }
+    const allComponents = findAllComponents(
+      $selectedScreen.props
+    ) as Component[]
+    return allComponents
+  }
+)
